@@ -104,6 +104,9 @@ function showCropForm() {
     $('#cropFormModal').modal('show');
 }
 
+function showStaffForm() {
+    $('#staffFormModal').modal('show');
+}
 
 
 
@@ -120,7 +123,7 @@ function addField() {
     const fieldImage02 = document.getElementById('fieldImage02').value;
 
     // Here you would normally save the crop data to a database
-    console.log('Crop Added:', { fieldCode, fieldName, fieldLocation, fieldSize, fieldImage01,fieldImage02 });
+    console.log('Field Added:', { fieldCode, fieldName, fieldLocation, fieldSize, fieldImage01,fieldImage02 });
 
     // Close the modal and reset form
     $('#fieldFormModal').modal('hide');
@@ -138,6 +141,29 @@ function addCrop() {
 
     // Here you would normally save the crop data to a database
     console.log('Crop Added:', { cropCode,cropName, scientificName, season, category, image,field_code });
+
+    // Close the modal and reset form
+    $('#cropFormModal').modal('hide');
+    document.getElementById('cropForm').reset();
+}
+
+function addStaff() {
+    const staffId = document.getElementById('staffId').value;
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const designation = document.getElementById('designation').value;
+    const gender = document.getElementById('gender').value;
+    const joinedDate = document.getElementById('joinedDate').value;
+    const dob = document.getElementById('dob').value;
+    const contact = document.getElementById('contact').value;
+    const email = document.getElementById('email').value;
+    const line01 = document.getElementById('line01').value;
+    const line02 = document.getElementById('line02').value;
+    const line03 = document.getElementById('line03').value;
+    const line04 = document.getElementById('line04').value;
+
+    // Here you would normally save the crop data to a database
+    console.log('Staff Added:', { staffId,firstName, lastName, designation, gender, joinedDate,dob,contact,email,line01,line02,line03,line04 });
 
     // Close the modal and reset form
     $('#cropFormModal').modal('hide');

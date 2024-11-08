@@ -164,38 +164,113 @@
         </div>
 
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!--staff section-->
     <section id="staff" class="page">
         <h2>Staff Management</h2>
         <div id="staff-list"></div>
+        <!-- Add crop Button -->
+        <button class="btn btn-primary mb-3" onclick="showStaffForm()">Add New Staff</button>
+        <!-- Crop Form Modal -->
+        <div id="staffFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="staffFormLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staffFormLabel">Add New Staff</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="staffForm">
+                            <div class="form-group">
+                                <label for="staffId">Staff ID</label>
+                                <input type="text" class="form-control" id="staffId" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="designation">Designation</label>
+                                <input type="text" class="form-control" id="designation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <input type="text" class="form-control" id="gender" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="joinedDate">Joined Date</label>
+                                <input type="date" class="form-control" id="joinedDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of birth</label>
+                                <input type="date" class="form-control" id="dob" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact No</label>
+                                <input type="text" class="form-control" id="contact" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="line01">Line 01</label>
+                                <input type="text" class="form-control" id="line01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="line02">Line 02</label>
+                                <input type="text" class="form-control" id="line02" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="line03">Line 03</label>
+                                <input type="text" class="form-control" id="line03" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="line04">Line 04</label>
+                                <input type="text" class="form-control" id="line04" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="vehicleId">Vehicle ID</label>
+                                <input type="text" class="form-control" id="vehicleId" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="addStaff()">Save Staff</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!--vehicle section-->
     <section id="vehicles" class="page">
         <h2>Vehicle Management</h2>
