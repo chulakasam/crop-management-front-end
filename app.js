@@ -110,6 +110,9 @@ function showStaffForm() {
 function showVehicleForm() {
     $('#vehicleFormModal').modal('show');
 }
+function showEquipmentForm() {
+    $('#equipmentFormModal').modal('show');
+}
 
 
 
@@ -187,4 +190,19 @@ function addVehicle() {
     // Close the modal and reset form
     $('#vehicleFormModal').modal('hide');
     document.getElementById('vehicleForm').reset();
+}
+function addEquipment() {
+    const equipmentId = document.getElementById('equipmentId').value;
+    const name = document.getElementById('name').value;
+    const type = document.getElementById('type').value;
+    const equipmentStatus = document.getElementById('equipmentStatus').value;
+    const code = document.getElementById('code').value;
+    const staff_id = document.getElementById('staff_id').value;
+
+    // Here you would normally save the crop data to a database
+    console.log('Vehicle Added:', { equipmentId,name, type, equipmentStatus,code,staff_id});
+
+    // Close the modal and reset form
+    $('#vehicleFormModal').modal('hide');
+    document.getElementById('equipmentForm').reset();
 }

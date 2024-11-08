@@ -306,25 +306,75 @@
 
 
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!--equipment section-->
     <section id="equipment" class="page">
         <h2>Equipment Management</h2>
         <div id="equipment-list"></div>
+        <!-- Add Equipment Button -->
+        <button class="btn btn-primary mb-3" onclick="showEquipmentForm()">Add New Equipment</button>
+        <!-- Vehicle Form Modal -->
+        <div id="equipmentFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="equipmentFormLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="equipmentFormLabel">Add New Crop</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="equipmentForm">
+                            <div class="form-group">
+                                <label for="equipmentId">Equipment ID</label>
+                                <input type="text" class="form-control" id="equipmentId" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Equipment Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="type"> Type</label>
+                                <input type="text" class="form-control" id="type" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="equipmentStatus">Status</label>
+                                <input type="text" class="form-control" id="equipmentStatus" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="code">Field Code</label>
+                                <input type="text" class="form-control" id="code" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="staff_id">Staff ID</label>
+                                <input type="text" class="form-control" id="staff_id" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="addEquipment()">Save Equipment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
     </section>
+
+
+
+
+
+
+
+
+
+
+
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
