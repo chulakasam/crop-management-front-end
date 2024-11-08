@@ -168,7 +168,7 @@
     <section id="staff" class="page">
         <h2>Staff Management</h2>
         <div id="staff-list"></div>
-        <!-- Add crop Button -->
+        <!-- Add staff Button -->
         <button class="btn btn-primary mb-3" onclick="showStaffForm()">Add New Staff</button>
         <!-- Crop Form Modal -->
         <div id="staffFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="staffFormLabel" aria-hidden="true">
@@ -248,34 +248,78 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!--vehicle section-->
     <section id="vehicles" class="page">
         <h2>Vehicle Management</h2>
         <div id="vehicle-list"></div>
+        <!-- Add vehicle Button -->
+        <button class="btn btn-primary mb-3" onclick="showVehicleForm()">Add New Vehicle</button>
+        <!-- Vehicle Form Modal -->
+        <div id="vehicleFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vehicleFormLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="vehicleFormLabel">Add New Crop</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="vehicleForm">
+                            <div class="form-group">
+                                <label for="vehicleCode">Vehicle Code</label>
+                                <input type="text" class="form-control" id="vehicleCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="licenseNo">License No</label>
+                                <input type="text" class="form-control" id="licenseNo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fuelType">Fuel Type</label>
+                                <input type="text" class="form-control" id="fuelType" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="vCategory">Category</label>
+                                <input type="text" class="form-control" id="vCategory" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="remark">Remark</label>
+                                <input type="text" class="form-control" id="remark" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <input type="text" class="form-control" id="status" required>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="addVehicle()">Save Vehicle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!--equipment section-->
     <section id="equipment" class="page">
         <h2>Equipment Management</h2>

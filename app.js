@@ -107,6 +107,9 @@ function showCropForm() {
 function showStaffForm() {
     $('#staffFormModal').modal('show');
 }
+function showVehicleForm() {
+    $('#vehicleFormModal').modal('show');
+}
 
 
 
@@ -127,7 +130,7 @@ function addField() {
 
     // Close the modal and reset form
     $('#fieldFormModal').modal('hide');
-    document.getElementById('cropForm').reset();
+    document.getElementById('fieldForm').reset();
 }
 
 function addCrop() {
@@ -167,5 +170,21 @@ function addStaff() {
 
     // Close the modal and reset form
     $('#cropFormModal').modal('hide');
-    document.getElementById('cropForm').reset();
+    document.getElementById('staffForm').reset();
+}
+
+function addVehicle() {
+    const vehicleCode = document.getElementById('vehicleCode').value;
+    const licenseNo = document.getElementById('licenseNo').value;
+    const fuelType = document.getElementById('fuelType').value;
+    const vCategory = document.getElementById('vCategory').value;
+    const remark = document.getElementById('remark').value;
+    const status = document.getElementById('status').value;
+
+    // Here you would normally save the crop data to a database
+    console.log('Vehicle Added:', { vehicleCode,licenseNo, fuelType, vCategory, remark,status });
+
+    // Close the modal and reset form
+    $('#vehicleFormModal').modal('hide');
+    document.getElementById('vehicleForm').reset();
 }
