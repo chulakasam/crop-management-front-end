@@ -96,11 +96,22 @@ function loadEquipment() {
 navigateTo('home');
 
 
-function showCropForm() {
+function showFieldForm() {
     $('#fieldFormModal').modal('show');
 }
 
-function addCrop() {
+function showCropForm() {
+    $('#cropFormModal').modal('show');
+}
+
+
+
+
+
+
+
+
+function addField() {
     const fieldCode = document.getElementById('fieldCode').value;
     const fieldName = document.getElementById('fieldName').value;
     const fieldLocation = document.getElementById('fieldLocation').value;
@@ -113,5 +124,22 @@ function addCrop() {
 
     // Close the modal and reset form
     $('#fieldFormModal').modal('hide');
+    document.getElementById('cropForm').reset();
+}
+
+function addCrop() {
+    const cropCode = document.getElementById('cropCode').value;
+    const cropName = document.getElementById('cropName').value;
+    const scientificName = document.getElementById('scientificName').value;
+    const season = document.getElementById('season').value;
+    const category = document.getElementById('category').value;
+    const image = document.getElementById('image').value;
+    const field_code = document.getElementById('field_code').value;
+
+    // Here you would normally save the crop data to a database
+    console.log('Crop Added:', { cropCode,cropName, scientificName, season, category, image,field_code });
+
+    // Close the modal and reset form
+    $('#cropFormModal').modal('hide');
     document.getElementById('cropForm').reset();
 }

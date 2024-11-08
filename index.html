@@ -53,12 +53,12 @@
             </div>
         </section>
     </section>
-
+    <!--field section-->
     <section id="fields" class="page">
         <h2>Field Management</h2>
         <div id="field-list"></div>
         <!-- Add Field Button -->
-        <button class="btn btn-primary mb-3" onclick="showCropForm()">Add New Field</button>
+        <button class="btn btn-primary mb-3" onclick="showFieldForm()">Add New Field</button>
         <!-- Field Form Modal -->
         <div id="fieldFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fieldFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -70,7 +70,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="cropForm">
+                        <form id="fieldForm">
                             <div class="form-group">
                                 <label for="fieldCode">Field Code</label>
                                 <input type="text" class="form-control" id="fieldCode" required>
@@ -99,31 +99,109 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="addCrop()">Save Field</button>
+                        <button type="button" class="btn btn-primary" onclick="addField()">Save Field</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--crop section-->
+    <section id="crops" class="page">
+        <h2>Crop Management</h2>
+        <div id="crop-list"></div>
+        <!-- Add crop Button -->
+        <button class="btn btn-primary mb-3" onclick="showCropForm()">Add New Crop</button>
+        <!-- Crop Form Modal -->
+        <div id="cropFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="cropFormLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cropFormLabel">Add New Crop</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="cropForm">
+                            <div class="form-group">
+                                <label for="cropCode">Crop Code</label>
+                                <input type="text" class="form-control" id="cropCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cropName">Crop Name</label>
+                                <input type="text" class="form-control" id="cropName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="scientificName">Scientific Name</label>
+                                <input type="text" class="form-control" id="scientificName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="season">Season</label>
+                                <input type="text" class="form-control" id="season" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <input type="text" class="form-control" id="category" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input type="text" class="form-control" id="image" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="field_code">Field Code</label>
+                                <input type="text" class="form-control" id="field_code" required>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="addCrop()">Save Crop</button>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
     </section>
 
-    <section id="crops" class="page">
-        <h2>Crop Management</h2>
-        <div id="crop-list"></div>
-    </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--staff section-->
     <section id="staff" class="page">
         <h2>Staff Management</h2>
         <div id="staff-list"></div>
     </section>
-
+    <!--vehicle section-->
     <section id="vehicles" class="page">
         <h2>Vehicle Management</h2>
         <div id="vehicle-list"></div>
     </section>
-
+    <!--equipment section-->
     <section id="equipment" class="page">
         <h2>Equipment Management</h2>
         <div id="equipment-list"></div>
