@@ -14,6 +14,7 @@ function navigateTo(pageId) {
     else if (pageId === 'staff') loadStaff();
     else if (pageId === 'vehicles') loadVehicles();
     else if (pageId === 'equipment') loadEquipment();
+    else if (pageId === 'logs') loadMonitoringLog();
 }
 
 // Sample data loading function for each section
@@ -91,6 +92,20 @@ function loadEquipment() {
     `;
     }, 500);
 }
+function loadMonitoringLog() {
+    document.getElementById('log-list').innerHTML = `
+    <p>Loading monitoring log data...</p>
+  `;
+    // Simulating an API call
+    setTimeout(() => {
+        document.getElementById('log-list').innerHTML = `
+      <ul>
+        <li> Usage: Logs Preparation</li>
+        <li> Usage: monitoring details</li>
+      </ul>
+    `;
+    }, 500);
+}
 
 // Load the home page initially
 navigateTo('home');
@@ -112,6 +127,9 @@ function showVehicleForm() {
 }
 function showEquipmentForm() {
     $('#equipmentFormModal').modal('show');
+}
+function showLogForm() {
+    $('#logFormModal').modal('show');
 }
 
 
@@ -200,9 +218,114 @@ function addEquipment() {
     const staff_id = document.getElementById('staff_id').value;
 
     // Here you would normally save the crop data to a database
-    console.log('Vehicle Added:', { equipmentId,name, type, equipmentStatus,code,staff_id});
+    console.log('Equipment Added:', { equipmentId,name, type, equipmentStatus,code,staff_id});
 
     // Close the modal and reset form
     $('#vehicleFormModal').modal('hide');
     document.getElementById('equipmentForm').reset();
 }
+
+function addLog() {
+    const logId = document.getElementById('logId').value;
+    const observation = document.getElementById('observation').value;
+    const logImage = document.getElementById('logImage').value;
+    const logDate = document.getElementById('logDate').value;
+    const f_Code = document.getElementById('f_Code').value;
+    const s_id = document.getElementById('s_id').value;
+    const c_id= document.getElementById('c_id').value;
+    const v_id = document.getElementById('v_id').value;
+
+    // Here you would normally save the crop data to a database
+    console.log('Monitoring Log Added:', { logId,observation, logImage, logDate,f_Code,s_id,c_id,v_id});
+
+    // Close the modal and reset form
+    $('#logFormModal').modal('hide');
+    document.getElementById('logForm').reset();
+}
+
+
+
+
+// Data and configurations for charts
+
+// Bar Chart - Field Data
+const barCtx = document.getElementById('barChart').getContext('2d');
+const barChart = new Chart(barCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Field 1', 'Field 2', 'Field 3', 'Field 4'],
+        datasets: [{
+            label: 'Field Size (acres)',
+            data: [10, 15, 20, 25],
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+        }],
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
+        },
+    },
+});
+
+// Line Chart - Crop Growth Trends
+const lineCtx = document.getElementById('lineChart').getContext('2d');
+const lineChart = new Chart(lineCtx, {
+    type: 'line',
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May'],
+        datasets: [{
+            label: 'Crop Growth (%)',
+            data: [10, 20, 30, 40, 50],
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgba(153, 102, 255, 1)',
+            fill: true,
+        }],
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
+        },
+    },
+});
+
+// Pie Chart - Equipment Usage
+const pieCtx = document.getElementById('pieChart').getContext('2d');
+const pieChart = new Chart(pieCtx, {
+    type: 'pie',
+    data: {
+        labels: ['Plows', 'Tractors', 'Seeders', 'Harvesters'],
+        datasets: [{
+            data: [25, 20, 30, 25],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+            ],
+        }],
+    },
+    options: {
+        responsive: true,
+    },
+});
+
+// Function to update data dynamically
+function updateChartData(chart, data) {
+    chart.data.datasets[0].data = data;
+    chart.update();
+}
+
+// Example: Updating data after 3 seconds
+setTimeout(() => {
+    updateChartData(barChart, [12, 18, 22, 28]);
+    updateChartData(lineChart, [15, 25, 35, 45, 55]);
+    updateChartData(pieChart, [20, 25, 25, 30]);
+}, 3000);

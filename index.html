@@ -6,6 +6,7 @@
     <title>Crop Management System</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <!-- Navigation -->
@@ -16,6 +17,7 @@
     <a href="#" onclick="navigateTo('staff')">Staff</a>
     <a href="#" onclick="navigateTo('vehicles')">Vehicles</a>
     <a href="#" onclick="navigateTo('equipment')">Equipment</a>
+    <a href="#" onclick="navigateTo('logs')">Monitoring Log</a>
 </nav>
 
 <!-- Sections -->
@@ -51,6 +53,22 @@
                     </div>
                 </div>
             </div>
+
+
+            <section>
+                <h2>Field Data (Bar Chart)</h2>
+                <canvas id="barChart"></canvas>
+            </section>
+
+            <section>
+                <h2>Crop Growth Trends (Line Chart)</h2>
+                <canvas id="lineChart"></canvas>
+            </section>
+
+            <section>
+                <h2>Equipment Usage (Pie Chart)</h2>
+                <canvas id="pieChart"></canvas>
+            </section>
         </section>
     </section>
     <!--field section-->
@@ -59,6 +77,12 @@
         <div id="field-list"></div>
         <!-- Add Field Button -->
         <button class="btn btn-primary mb-3" onclick="showFieldForm()">Add New Field</button>
+        <!-- Update Field Button -->
+        <button class="btn btn-secondary mb-3" >Update Field</button>
+        <!-- Delete Field Button -->
+        <button class="btn btn-danger mb-3" >Delete Field</button>
+        <!-- Search Field Button -->
+        <button class="btn btn-success mb-3" >Search Field</button>
         <!-- Field Form Modal -->
         <div id="fieldFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fieldFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -89,11 +113,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="fieldImage01">Field Image 01</label>
-                                <input type="text" class="form-control" id="fieldImage01" required>
+                                <input type="file" class="form-control" id="fieldImage01" required>
                             </div>
                             <div class="form-group">
                                 <label for="fieldImage02">Field Image 02</label>
-                                <input type="text" class="form-control" id="fieldImage02" required>
+                                <input type="file" class="form-control" id="fieldImage02" required>
                             </div>
                         </form>
                     </div>
@@ -111,6 +135,12 @@
         <div id="crop-list"></div>
         <!-- Add crop Button -->
         <button class="btn btn-primary mb-3" onclick="showCropForm()">Add New Crop</button>
+        <!-- Update crop Button -->
+        <button class="btn btn-secondary mb-3" >Update  Crop</button>
+        <!-- Delete crop Button -->
+        <button class="btn btn-danger mb-3" >Delete Crop</button>
+        <!-- Search crop Button -->
+        <button class="btn btn-success mb-3" >Search Crop</button>
         <!-- Crop Form Modal -->
         <div id="cropFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="cropFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -145,14 +175,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="image">Image</label>
-                                <input type="text" class="form-control" id="image" required>
+                                <input type="file" class="form-control" id="image" required>
                             </div>
                             <div class="form-group">
                                 <label for="field_code">Field Code</label>
                                 <input type="text" class="form-control" id="field_code" required>
                             </div>
-
-
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -162,7 +190,6 @@
                 </div>
             </div>
         </div>
-
     </section>
     <!--staff section-->
     <section id="staff" class="page">
@@ -170,6 +197,12 @@
         <div id="staff-list"></div>
         <!-- Add staff Button -->
         <button class="btn btn-primary mb-3" onclick="showStaffForm()">Add New Staff</button>
+        <!-- Update staff Button -->
+        <button class="btn btn-secondary mb-3" >Update Staff</button>
+        <!-- Delete staff Button -->
+        <button class="btn btn-danger mb-3" >Delete Staff</button>
+        <!-- Search staff Button -->
+        <button class="btn btn-success mb-3" >Search Staff</button>
         <!-- Crop Form Modal -->
         <div id="staffFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="staffFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -254,6 +287,12 @@
         <div id="vehicle-list"></div>
         <!-- Add vehicle Button -->
         <button class="btn btn-primary mb-3" onclick="showVehicleForm()">Add New Vehicle</button>
+        <!-- Update vehicle Button -->
+        <button class="btn btn-secondary mb-3" >Update Vehicle</button>
+        <!-- Delete vehicle Button -->
+        <button class="btn btn-danger mb-3" >Delete Vehicle</button>
+        <!-- Search vehicle Button -->
+        <button class="btn btn-success mb-3" >Search Vehicle</button>
         <!-- Vehicle Form Modal -->
         <div id="vehicleFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vehicleFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -301,10 +340,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </section>
     <!--equipment section-->
     <section id="equipment" class="page">
@@ -312,6 +347,12 @@
         <div id="equipment-list"></div>
         <!-- Add Equipment Button -->
         <button class="btn btn-primary mb-3" onclick="showEquipmentForm()">Add New Equipment</button>
+        <!-- Update equipment Button -->
+        <button class="btn btn-secondary mb-3" >Update Equipment</button>
+        <!-- Delete equipment Button -->
+        <button class="btn btn-danger mb-3" >Delete Equipment</button>
+        <!-- Search equipment Button -->
+        <button class="btn btn-success mb-3" >Search Equipment</button>
         <!-- Vehicle Form Modal -->
         <div id="equipmentFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="equipmentFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -357,24 +398,72 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
     </section>
-
-
-
-
-
-
-
-
-
-
-
+    <section id="logs" class="page">
+        <h2>Monitoring Log Management</h2>
+        <div id="log-list"></div>
+        <!-- Add Log Button -->
+        <button class="btn btn-primary mb-3" onclick="showLogForm()">Add New Monitoring Log</button>
+        <!-- Update Log Button -->
+        <button class="btn btn-secondary mb-3" >Update Monitoring Log</button>
+        <!-- Delete Log Button -->
+        <button class="btn btn-danger mb-3" >Delete Monitoring Log</button>
+        <!-- Search Log Button -->
+        <button class="btn btn-success mb-3" >Search Monitoring Log</button>
+        <!-- Vehicle Form Modal -->
+        <div id="logFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="logFormLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logFormLabel">Add New Crop</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="logForm">
+                            <div class="form-group">
+                                <label for="logId">Log ID</label>
+                                <input type="text" class="form-control" id="logId" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="observation">Observation</label>
+                                <input type="text" class="form-control" id="observation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="logImage"> Image</label>
+                                <input type="file" class="form-control" id="logImage" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="logDate">Date</label>
+                                <input type="text" class="form-control" id="logDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="f_Code">Field Code</label>
+                                <input type="text" class="form-control" id="f_Code" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="s_id">Staff ID</label>
+                                <input type="text" class="form-control" id="s_id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="c_id">Crop ID</label>
+                                <input type="text" class="form-control" id="c_id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="v_id">Vehicle ID</label>
+                                <input type="text" class="form-control" id="v_id" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="addLog()">Save Monitoring Log</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
