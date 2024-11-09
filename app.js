@@ -329,3 +329,63 @@ setTimeout(() => {
     updateChartData(lineChart, [15, 25, 35, 45, 55]);
     updateChartData(pieChart, [20, 25, 25, 30]);
 }, 3000);
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    populateTables();
+});
+
+function populateTables() {
+    // Sample Data
+    const fields = [
+        { code: "F001", name: "Field A", location: "Lat: 12.34, Long: 56.78", extent: 2000, staff: "John Doe" },
+        { code: "F002", name: "Field B", location: "Lat: 98.76, Long: 54.32", extent: 3000, staff: "Jane Smith" },
+    ];
+
+    const crops = [
+        { code: "C001", commonName: "Rice", scientificName: "Oryza sativa", category: "Cereal", season: "Spring", field: "Field A" },
+        { code: "C002", commonName: "Wheat", scientificName: "Triticum", category: "Cereal", season: "Winter", field: "Field B" },
+    ];
+
+    const staff = [
+        { id: "S001", firstName: "John", lastName: "Doe", designation: "Manager", role: "MANAGER" },
+        { id: "S002", firstName: "Jane", lastName: "Smith", designation: "Scientist", role: "SCIENTIST" },
+    ];
+
+    // Populate Fields Table
+    const fieldsTable = document.getElementById("fieldsTable").querySelector("tbody");
+    fields.forEach(field => {
+        let row = fieldsTable.insertRow();
+        row.insertCell(0).innerText = field.code;
+        row.insertCell(1).innerText = field.name;
+        row.insertCell(2).innerText = field.location;
+        row.insertCell(3).innerText = field.extent;
+        row.insertCell(4).innerText = field.staff;
+    });
+
+    // Populate Crops Table
+    const cropsTable = document.getElementById("cropsTable").querySelector("tbody");
+    crops.forEach(crop => {
+        let row = cropsTable.insertRow();
+        row.insertCell(0).innerText = crop.code;
+        row.insertCell(1).innerText = crop.commonName;
+        row.insertCell(2).innerText = crop.scientificName;
+        row.insertCell(3).innerText = crop.category;
+        row.insertCell(4).innerText = crop.season;
+        row.insertCell(5).innerText = crop.field;
+    });
+
+    // Populate Staff Table
+    const staffTable = document.getElementById("staffTable").querySelector("tbody");
+    staff.forEach(person => {
+        let row = staffTable.insertRow();
+        row.insertCell(0).innerText = person.id;
+        row.insertCell(1).innerText = person.firstName;
+        row.insertCell(2).innerText = person.lastName;
+        row.insertCell(3).innerText = person.designation;
+        row.insertCell(4).innerText = person.role;
+    });
+}

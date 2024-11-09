@@ -83,6 +83,9 @@
         <button class="btn btn-danger mb-3" >Delete Field</button>
         <!-- Search Field Button -->
         <button class="btn btn-success mb-3" >Search Field</button>
+        <input type="text" class="search" name="search" placeholder="Search...">
+
+
         <!-- Field Form Modal -->
         <div id="fieldFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fieldFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -128,6 +131,29 @@
                 </div>
             </div>
         </div>
+
+        <!-- Fields Table -->
+        <div>
+            <h2>Fields</h2>
+            <table id="fieldsTable">
+                <thead>
+                <tr>
+                    <th>Field Code</th>
+                    <th>Field Name</th>
+                    <th>Field Location</th>
+                    <th>Field Size</th>
+                    <th>Field Image 01</th>
+                    <th>Field Image 02</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Dynamic Data -->
+                </tbody>
+            </table>
+        </div>
+
+
+
     </section>
     <!--crop section-->
     <section id="crops" class="page">
@@ -141,6 +167,7 @@
         <button class="btn btn-danger mb-3" >Delete Crop</button>
         <!-- Search crop Button -->
         <button class="btn btn-success mb-3" >Search Crop</button>
+        <input type="text" class="search" name="search" placeholder="Search...">
         <!-- Crop Form Modal -->
         <div id="cropFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="cropFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -190,6 +217,26 @@
                 </div>
             </div>
         </div>
+        <!-- Crops Table -->
+        <div>
+            <h2>Crops</h2>
+            <table id="cropsTable">
+                <thead>
+                <tr>
+                    <th>Crop Code</th>
+                    <th>Common Name</th>
+                    <th>Scientific Name</th>
+                    <th>Season</th>
+                    <th>Category</th>
+                    <th>Image</th>
+                    <th>Field</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Dynamic Data -->
+                </tbody>
+            </table>
+        </div>
     </section>
     <!--staff section-->
     <section id="staff" class="page">
@@ -203,6 +250,7 @@
         <button class="btn btn-danger mb-3" >Delete Staff</button>
         <!-- Search staff Button -->
         <button class="btn btn-success mb-3" >Search Staff</button>
+        <input type="text" class="search" name="search" placeholder="Search...">
         <!-- Crop Form Modal -->
         <div id="staffFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="staffFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -280,6 +328,33 @@
                 </div>
             </div>
         </div>
+        <!-- Staff Table -->
+        <div>
+            <h2>Staff</h2>
+            <table id="staffTable">
+                <thead>
+                <tr>
+                    <th>Staff ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Designation</th>
+                    <th>Gender</th>
+                    <th>Joined Date</th>
+                    <th>Date of birth</th>
+                    <th>Contact No</th>
+                    <th>Email</th>
+                    <th>Line 01</th>
+                    <th>Line 02</th>
+                    <th>Line 03</th>
+                    <th>Line 04</th>
+                    <th>Vehicle ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Dynamic Data -->
+                </tbody>
+            </table>
+        </div>
     </section>
     <!--vehicle section-->
     <section id="vehicles" class="page">
@@ -293,6 +368,7 @@
         <button class="btn btn-danger mb-3" >Delete Vehicle</button>
         <!-- Search vehicle Button -->
         <button class="btn btn-success mb-3" >Search Vehicle</button>
+        <input type="text" class="search" name="search" placeholder="Search...">
         <!-- Vehicle Form Modal -->
         <div id="vehicleFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vehicleFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -340,6 +416,26 @@
                 </div>
             </div>
         </div>
+        <!-- Vehicles Table -->
+        <div>
+            <h2>Vehicles</h2>
+            <table id="vehiclesTable">
+                <thead>
+                <tr>
+                    <th>Vehicle Code</th>
+                    <th>License Plate</th>
+                    <th>Fuel Type</th>
+                    <th>Category</th>
+                    <th>Remark</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Dynamic Data -->
+                </tbody>
+            </table>
+        </div>
+
     </section>
     <!--equipment section-->
     <section id="equipment" class="page">
@@ -353,6 +449,7 @@
         <button class="btn btn-danger mb-3" >Delete Equipment</button>
         <!-- Search equipment Button -->
         <button class="btn btn-success mb-3" >Search Equipment</button>
+        <input type="text" class="search" name="search" placeholder="Search...">
         <!-- Vehicle Form Modal -->
         <div id="equipmentFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="equipmentFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -398,7 +495,27 @@
                 </div>
             </div>
         </div>
+        <!-- Equipment Table -->
+        <div>
+            <h2>Equipment</h2>
+            <table id="equipmentTable">
+                <thead>
+                <tr>
+                    <th>Equipment ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Assigned Field</th>
+                    <th>Assigned Staff</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Dynamic Data -->
+                </tbody>
+            </table>
+        </div>
     </section>
+   <!--equipment section-->
     <section id="logs" class="page">
         <h2>Monitoring Log Management</h2>
         <div id="log-list"></div>
@@ -410,6 +527,7 @@
         <button class="btn btn-danger mb-3" >Delete Monitoring Log</button>
         <!-- Search Log Button -->
         <button class="btn btn-success mb-3" >Search Monitoring Log</button>
+        <input type="text" class="search" name="search" placeholder="Search...">
         <!-- Vehicle Form Modal -->
         <div id="logFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="logFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -462,6 +580,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Monitoring Logs Table -->
+        <div>
+            <h2>Monitoring Logs</h2>
+            <table id="logsTable">
+                <thead>
+                <tr>
+                    <th>Log Code</th>
+                    <th>Observation</th>
+                    <th>Image</th>
+                    <th>Date</th>
+                    <th>Field</th>
+                    <th>Staff</th>
+                    <th>Crop</th>
+                    <th>Vehicle</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Dynamic Data -->
+                </tbody>
+            </table>
         </div>
     </section>
 </main>
