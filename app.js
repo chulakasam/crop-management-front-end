@@ -345,10 +345,6 @@ function populateTables() {
         { code: "F002", name: "Field B", location: "Lat: 98.76, Long: 54.32", extent: 3000, staff: "Jane Smith" },
     ];
 
-    const crops = [
-        { code: "C001", commonName: "Rice", scientificName: "Oryza sativa", category: "Cereal", season: "Spring", field: "Field A" },
-        { code: "C002", commonName: "Wheat", scientificName: "Triticum", category: "Cereal", season: "Winter", field: "Field B" },
-    ];
 
     const staff = [
         { id: "S001", firstName: "John", lastName: "Doe", designation: "Manager", role: "MANAGER" },
@@ -375,8 +371,19 @@ function populateTables() {
         row.insertCell(2).innerText = crop.scientificName;
         row.insertCell(3).innerText = crop.category;
         row.insertCell(4).innerText = crop.season;
-        row.insertCell(5).innerText = crop.field;
+        row.insertCell(5).innerText = crop.action;
     });
+
+    const crops = [
+
+    ];
+
+
+
+
+
+
+
 
     // Populate Staff Table
     const staffTable = document.getElementById("staffTable").querySelector("tbody");

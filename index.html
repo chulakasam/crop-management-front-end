@@ -163,13 +163,12 @@
         <div id="crop-list"></div>
         <!-- Add crop Button -->
         <button class="btn btn-primary mb-3" onclick="showCropForm()">Add New Crop</button>
-        <!-- Update crop Button -->
-        <button class="btn btn-secondary mb-3" >Update  Crop</button>
+
         <!-- Delete crop Button -->
         <button class="btn btn-danger mb-3" >Delete Crop</button>
         <!-- Search crop Button -->
-        <button class="btn btn-success mb-3" >Search Crop</button>
-        <input type="text" class="search" name="search" placeholder="Search...">
+        <button class="btn btn-success mb-3" id="searchCrop">Search Crop</button>
+        <input type="text" class="search" name="search" placeholder="Search..." id="cropId">
         <!-- Crop Form Modal -->
         <div id="cropFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="cropFormLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -215,6 +214,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="saveCrop">Save Crop</button>
+                        <button type="button" class="btn btn-success" id="updateButton">Update  Crop</button>
                     </div>
                 </div>
             </div>
@@ -231,10 +231,11 @@
                     <th>Season</th>
                     <th>Category</th>
                     <th>Image</th>
-                    <th>Field</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
+
                 <!-- Dynamic Data -->
                 </tbody>
             </table>
