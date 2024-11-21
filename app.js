@@ -138,21 +138,21 @@ function showLogForm() {
 
 
 
-function addField() {
-    const fieldCode = document.getElementById('fieldCode').value;
-    const fieldName = document.getElementById('fieldName').value;
-    const fieldLocation = document.getElementById('fieldLocation').value;
-    const fieldSize = document.getElementById('fieldSize').value;
-    const fieldImage01 = document.getElementById('fieldImage01').value;
-    const fieldImage02 = document.getElementById('fieldImage02').value;
-
-    // Here you would normally save the crop data to a database
-    console.log('Field Added:', { fieldCode, fieldName, fieldLocation, fieldSize, fieldImage01,fieldImage02 });
-
-    // Close the modal and reset form
-    $('#fieldFormModal').modal('hide');
-    document.getElementById('fieldForm').reset();
-}
+// function addField() {
+//     const fieldCode = document.getElementById('fieldCode').value;
+//     const fieldName = document.getElementById('fieldName').value;
+//     const fieldLocation = document.getElementById('fieldLocation').value;
+//     const fieldSize = document.getElementById('fieldSize').value;
+//     const fieldImage01 = document.getElementById('fieldImage01').value;
+//     const fieldImage02 = document.getElementById('fieldImage02').value;
+//
+//     // Here you would normally save the crop data to a database
+//     console.log('Field Added:', { fieldCode, fieldName, fieldLocation, fieldSize, fieldImage01,fieldImage02 });
+//
+//     // Close the modal and reset form
+//     $('#fieldFormModal').modal('hide');
+//     document.getElementById('fieldForm').reset();
+// }
 
 function addCrop() {
     const cropCode = document.getElementById('cropCode').value;

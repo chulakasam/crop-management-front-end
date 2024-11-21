@@ -127,6 +127,8 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" onclick="addField()">Save Field</button>
+
+
                     </div>
                 </div>
             </div>
@@ -204,15 +206,15 @@
                                 <label for="image">Image</label>
                                 <input type="file" class="form-control" id="image" required>
                             </div>
-                            <div class="form-group">
-                                <label for="field_code">Field Code</label>
-                                <input type="text" class="form-control" id="field_code" required>
-                            </div>
+<!--                            <div class="form-group">-->
+<!--                                <label for="field_code">Field Code</label>-->
+<!--                                <input type="text" class="form-control" id="field_code" required>-->
+<!--                            </div>-->
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="addCrop()">Save Crop</button>
+                        <button type="button" class="btn btn-primary" id="saveCrop">Save Crop</button>
                     </div>
                 </div>
             </div>
@@ -607,5 +609,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="app.js"></script>
+<script src="crop.js"></script>
+<script src="field.js"></script>
+
+
 </body>
 </html>
