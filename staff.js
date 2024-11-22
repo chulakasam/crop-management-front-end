@@ -12,7 +12,7 @@ document.getElementById('saveStaff').addEventListener("click",function (){
     const address=document.getElementById("line01").value;
     const role=document.getElementById("role").value;
 
-    if(!staffId || !firstName || !lastName || !designation || !gender || !joinedDate || !dob || !contact || !email || !address || !role){
+    if(!id || !first_name || !last_name || !designation || !gender || !joined_date || !dob || !contact_no || !email || !address || !role){
             alert("Please fill in all required fields")
     }
 
@@ -52,3 +52,57 @@ document.getElementById('saveStaff').addEventListener("click",function (){
         });
     console.log(id,first_name,last_name,designation,gender,joined_date,dob,contact_no,email,address,role)
 })
+
+
+
+
+
+
+//------------load for table--------------------------------------------------
+function loadAllStaff(){
+    fetch("http://localhost:5050/cropManagement/api/v1/staff", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response=>{
+            if(response.ok){
+                return response.json()
+            }else{
+                throw new Error("Failed to fetch staff :"+response.statusText)
+            }
+        })
+        .then(staffs=>{
+            const  staffTableBody=document.getElementById("staffTable").querySelector("tbody");
+            staffTableBody.innerHTML="";
+            staffs.forEach(staff=>{
+                let row = staffTableBody.insertRow();
+                row.insertCell(0).innerText=staff.id;
+                row.insertCell(1).innerText=staff.first_name;
+                row.insertCell(2).innerText=staff.last_name;
+                row.insertCell(3).innerText=staff.designation;
+                row.insertCell(4).innerText=staff.gender;
+                row.insertCell(5).innerText=staff.joined_date;
+                row.insertCell(6).innerText=staff.dob;
+                row.insertCell(7).innerText=staff.contact_no;
+                row.insertCell(8).innerText=staff.email;
+                row.insertCell(9).innerText=staff.address;
+                row.insertCell(10).innerText=staff.role;
+
+                let actionsCell = row.insertCell(11);
+                actionsCell.innerHTML = `
+                    <button class="btn btn-primary btn-sm edit-btn" data-id="${staff.id}">Edit</button>
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="${staff.id}" id="deletebtn">Delete</button>
+                `;
+            });
+
+            console.log("staff table updated!");
+        })
+        .catch(error => {
+           console.error("Error loading staff:", error);
+           alert("Failed to load staff. Please try again.");
+        });
+
+}
+document.addEventListener("DOMContentLoaded",loadAllStaff);

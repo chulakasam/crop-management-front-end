@@ -181,3 +181,4 @@ function attachDeleteEventListeners() {
         });
     });
 }
+document.addEventListener("DOMContentLoaded",loadAllCrops);
