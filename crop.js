@@ -91,9 +91,11 @@ function loadAllCrops() {
                 let actionsCell = row.insertCell(6);
                 actionsCell.innerHTML = `
                     <button class="btn btn-primary btn-sm edit-btn" data-id="${crop.cropCode}">Edit</button>
-                    <button class="btn btn-danger btn-sm delete-btn" data-id="${crop.cropCode}">Delete</button>
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="${crop.crop_code}" id="deletebtn">Delete</button>
                 `;
             });
+
+            attachDeleteEventListeners();
 
             console.log("Crops table updated!");
         })
@@ -150,3 +152,32 @@ document.getElementById("searchCrop").addEventListener("click", function () {
 
 
 
+
+
+function attachDeleteEventListeners() {
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const cropCode = button.dataset.id; // Get the crop ID from the button's data-id attribute
+
+            if (confirm(`Are you sure you want to delete crop ${cropCode}?`)) {
+                fetch(`http://localhost:5050/cropManagement/api/v1/crop/${cropCode}`, {
+                    method: "DELETE",
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("Crop deleted successfully!");
+                            loadAllCrops(); // Reload the table after successful deletion
+                        } else {
+                            alert("Failed to delete crop. It may not exist.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("An error occurred while deleting the crop.");
+                    });
+            }
+        });
+    });
+}
