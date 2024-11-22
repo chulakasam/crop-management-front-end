@@ -109,99 +109,43 @@ document.addEventListener("DOMContentLoaded",loadAllCrops)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.getElementById("updateButton").addEventListener("click", function () {
-    console.log("update clicked")
-});
 document.getElementById("searchCrop").addEventListener("click", function () {
-    const cropId = document.getElementById("cropId").value; // Input field for Crop ID
+    const cropCode = document.getElementById("cropId").value;
 
-    if (!cropId) {
-        alert("Please enter a Crop ID to search!");
+    if (!cropCode) {
+        alert("Please enter a Crop ID.");
         return;
     }
 
-    fetch(`http://localhost:5050/cropManagement/api/v1/crop/${cropId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
+    fetch(`http://localhost:5050/cropManagement/api/v1/crop/${cropCode}`, {
+        method: "GET"
     })
         .then(response => {
-            if (response.ok) {
-                return response.json(); // Parse the response JSON
-            } else {
-                alert("Crop not found! Error: " + response.statusText);
-                throw new Error("Crop not found");
+            if (!response.ok) {
+                if (response.status === 404) {
+                    throw new Error("Crop not found.");
+                }
+                throw new Error("Failed to fetch crop.");
             }
+            return response.json();
         })
-        .then(data => {
-            // Populate the form fields with the crop data
-            document.getElementById("cropCode").value = data.cropCode;
-            document.getElementById("cropName").value = data.cropName;
-            document.getElementById("scientificName").value = data.scientificName;
-            document.getElementById("category").value = data.category;
-            document.getElementById("season").value = data.season;
+        .then(crop => {
+            // Populate the form with fetched crop details
+            showCropForm();
+            document.getElementById("cropCode").value = crop.crop_code;
+            document.getElementById("cropName").value = crop.common_name;
+            document.getElementById("scientificName").value = crop.scientific_name;
+            document.getElementById("season").value = crop.season;
+            document.getElementById("category").value = crop.category;
 
-            // Optionally log the data or display a success message
-            console.log("Crop data loaded:", data);
-            alert("Crop data loaded successfully!");
+            console.log("Crop details loaded successfully.");
+
         })
         .catch(error => {
-            console.error("Error:", error);
+            console.error("Error fetching crop:", error);
+            alert(error.message);
         });
 });
-
-
-
 
 
 
