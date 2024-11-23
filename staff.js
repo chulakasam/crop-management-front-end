@@ -106,3 +106,46 @@ function loadAllStaff(){
 
 }
 document.addEventListener("DOMContentLoaded",loadAllStaff);
+
+
+
+//----------------------------------search by id-----------------------
+document.getElementById("searchStaff").addEventListener("click",function (){
+    const id = document.getElementById("staffCode").value;
+    if(!id){
+        alert("Please enter the Staff ID");
+        return;
+    }
+    fetch(`http://localhost:5050/cropManagement/api/v1/staff/${id}`,{
+        method:"GET"
+    })
+        .then(response=>{
+            if(!response.ok){
+                if (response.status===404){
+                    throw new Error("Staff not found .");
+                }
+                throw new Error("Failed to fetch staff .");
+            }
+            return response.json();
+        })
+        .then(staff=>{
+            showStaffForm();
+            document.getElementById("staffId").value=staff.id;
+            document.getElementById("firstName").value=staff.first_name;
+            document.getElementById("lastName").value=staff.last_name;
+            document.getElementById("designation").value=staff.designation;
+            document.getElementById("gender").value=staff.gender;
+            document.getElementById("joinedDate").value=staff.joined_date;
+            document.getElementById("dob").value=staff.dob;
+            document.getElementById("contact").value=staff.contact_no;
+            document.getElementById("email").value=staff.email;
+            document.getElementById("line01").value=staff.address;
+            document.getElementById("role").value=staff.role;
+
+            console.log("Staff detail loaded successfully .")
+        })
+        .catch(error => {
+            console.error("Error fetching staff:", error);
+            alert(error.message);
+        });
+})
