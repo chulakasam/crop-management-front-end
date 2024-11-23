@@ -13,7 +13,7 @@ document.getElementById('saveStaff').addEventListener("click",function (){
     const role=document.getElementById("role").value;
 
     if(!id || !first_name || !last_name || !designation || !gender || !joined_date || !dob || !contact_no || !email || !address || !role){
-            alert("Please fill in all required fields")
+        alert("Please fill in all required fields")
     }
 
 
@@ -53,6 +53,7 @@ document.getElementById('saveStaff').addEventListener("click",function (){
         });
     console.log(id,first_name,last_name,designation,gender,joined_date,dob,contact_no,email,address,role)
 })
+
 
 
 
@@ -101,13 +102,12 @@ function loadAllStaff(){
             console.log("staff table updated!");
         })
         .catch(error => {
-           console.error("Error loading staff:", error);
-           alert("Failed to load staff. Please try again.");
+            console.error("Error loading staff:", error);
+            alert("Failed to load staff. Please try again.");
         });
 
 }
 document.addEventListener("DOMContentLoaded",loadAllStaff);
-
 
 
 //----------------------------------search by id-----------------------
@@ -150,35 +150,3 @@ document.getElementById("searchStaff").addEventListener("click",function (){
             alert(error.message);
         });
 })
-
-//---------------------------------- delete staff by id -------------------------------------------
-
-function attachDeleteEventListeners(){
-    const deleteButtons = document.querySelectorAll(".delete-btn");
-    deleteButtons.forEach(button=>{
-        button.addEventListener("click",function (){
-
-            const staffCode = button.dataset.id;
-
-            if(confirm(`Are you sure you want to delete crop ${staffCode}?`)){
-                fetch(`http://localhost:5050/cropManagement/api/v1/staff/${staffCode}`, {
-                    method: "DELETE",
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            alert("staff deleted successfully!");
-                            loadAllStaff(); // Reload the table after successful deletion
-                        } else {
-                            alert("Failed to delete staff. It may not exist.");
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error:", error);
-                        alert("An error occurred while deleting the staff.");
-                    });
-            }
-        })
-    })
-
-
-}
