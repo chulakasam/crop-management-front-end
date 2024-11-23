@@ -42,6 +42,7 @@ document.getElementById('saveStaff').addEventListener("click",function (){
             if (response.ok) {
                 alert("Staff saved successfully!");
                 // Optionally, you can refresh the staff list or clear the form
+                loadAllStaff();
             } else {
                 throw new Error("Error saving staff: " + response.statusText);
             }
@@ -149,3 +150,35 @@ document.getElementById("searchStaff").addEventListener("click",function (){
             alert(error.message);
         });
 })
+
+//---------------------------------- delete staff by id -------------------------------------------
+
+function attachDeleteEventListeners(){
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+    deleteButtons.forEach(button=>{
+        button.addEventListener("click",function (){
+
+            const staffCode = button.dataset.id;
+
+            if(confirm(`Are you sure you want to delete crop ${staffCode}?`)){
+                fetch(`http://localhost:5050/cropManagement/api/v1/staff/${staffCode}`, {
+                    method: "DELETE",
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("staff deleted successfully!");
+                            loadAllStaff(); // Reload the table after successful deletion
+                        } else {
+                            alert("Failed to delete staff. It may not exist.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("An error occurred while deleting the staff.");
+                    });
+            }
+        })
+    })
+
+
+}

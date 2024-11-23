@@ -1,5 +1,5 @@
 
-
+//------------------------save crop-----------------------------------
 document.getElementById("saveCrop").addEventListener("click", function () {
     const cropCode = document.getElementById("cropCode").value;
     const commonName = document.getElementById("cropName").value;
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded",loadAllCrops)
 
 
 
-
+// ---------------------------search crop -----------------------------------------------
 document.getElementById("searchCrop").addEventListener("click", function () {
     const cropCode = document.getElementById("cropId").value;
 
