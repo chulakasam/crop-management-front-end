@@ -34,6 +34,7 @@ document.getElementById('saveVehicle').addEventListener("click",function (){
         .then(response => {
             if (response.ok) {
                 alert("Vehicle saved successfully!");
+                loadAllVehicle();
             } else {
                 throw new Error("Error saving vehicle: " + response.statusText);
             }
@@ -91,3 +92,52 @@ function loadStaffIDs() {
 
 // Load staff IDs when the page is fully loaded
 document.addEventListener("DOMContentLoaded", loadStaffIDs);
+
+
+
+//-----------------------------load all vehicle-------------------
+
+function loadAllVehicle(){
+    fetch("http://localhost:5050/cropManagement/api/v1/vehicles", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response=>{
+            if(response.ok){
+                return response.json()
+            }else{
+                throw new Error("Failed to fetch vehicle :"+response.statusText)
+            }
+        })
+        .then(vehicles=>{
+            const  staffTableBody=document.getElementById("vehiclesTable").querySelector("tbody");
+            staffTableBody.innerHTML="";
+            vehicles.forEach(vehicle=>{
+                let row = staffTableBody.insertRow();
+                row.insertCell(0).innerText=vehicle.vehicle_code;
+                row.insertCell(1).innerText=vehicle.licensePlateNumber;
+                row.insertCell(2).innerText=vehicle.fuelType;
+                row.insertCell(3).innerText=vehicle.vehicleCategory;
+                row.insertCell(4).innerText=vehicle.remarks;
+                row.insertCell(5).innerText=vehicle.status;
+                row.insertCell(6).innerText=vehicle.assigned_staff.id;
+
+
+                let actionsCell = row.insertCell(7);
+                actionsCell.innerHTML = `
+                    <button class="btn btn-primary btn-sm edit-btn" data-id="${vehicle.id}">Edit</button>
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="${vehicle.id}" id="deletebtn">Delete</button>
+                `;
+            });
+            attachDeleteEventListener()
+            console.log("vehicle table updated!");
+        })
+        .catch(error => {
+            console.error("Error loading vehicle:", error);
+            alert("Failed to load vehicle. Please try again.");
+        });
+
+}
+document.addEventListener("DOMContentLoaded",loadAllVehicle);
