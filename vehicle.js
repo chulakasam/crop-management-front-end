@@ -128,9 +128,10 @@ function loadAllVehicle(){
                 let actionsCell = row.insertCell(7);
                 actionsCell.innerHTML = `
                     <button class="btn btn-primary btn-sm edit-btn" data-id="${vehicle.id}">Edit</button>
-                    <button class="btn btn-danger btn-sm delete-btn" data-id="${vehicle.id}" id="deletebtn">Delete</button>
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="${vehicle.vehicle_code}" id="deletebtn">Delete</button>
                 `;
             });
+            deleteVehicleById();
             console.log("vehicle table updated!");
         })
         .catch(error => {
@@ -144,6 +145,39 @@ document.addEventListener("DOMContentLoaded",loadAllVehicle);
 
 
 //------------------------- delete vehicle by Id ---------------------
+function deleteVehicleById() {
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const vehicle_code = button.dataset.id; // Get the crop ID from the button's data-id attribute
+
+            if (confirm(`Are you sure you want to delete vehicle ${vehicle_code}?`)) {
+                fetch(`http://localhost:5050/cropManagement/api/v1/vehicles/${vehicle_code}`, {
+                    method: "DELETE",
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("vehicle deleted successfully!");
+                            loadAllVehicle(); // Reload the table after successful deletion
+                        } else {
+                            alert("Failed to delete vehicle. It may not exist.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("An error occurred while deleting the vehicle.");
+                    });
+            }
+        });
+    });
+}
+document.addEventListener("DOMContentLoaded",loadAllVehicle);
+
+
+
+
+
 
 //--------------------------search by id -----------------------------
 document.getElementById("searchVehicle").addEventListener("click",function (){
