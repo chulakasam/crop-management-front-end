@@ -131,7 +131,6 @@ function loadAllVehicle(){
                     <button class="btn btn-danger btn-sm delete-btn" data-id="${vehicle.id}" id="deletebtn">Delete</button>
                 `;
             });
-            attachDeleteEventListener()
             console.log("vehicle table updated!");
         })
         .catch(error => {
@@ -141,3 +140,46 @@ function loadAllVehicle(){
 
 }
 document.addEventListener("DOMContentLoaded",loadAllVehicle);
+
+
+
+//------------------------- delete vehicle by Id ---------------------
+
+//--------------------------search by id -----------------------------
+document.getElementById("searchVehicle").addEventListener("click",function (){
+     const vehicle_code = document.getElementById("searchVehicleCode").value;
+     if(!vehicle_code){
+         alert("Please enter the Vehicle ID");
+         return;
+     }
+     fetch(`http://localhost:5050/cropManagement/api/v1/vehicles/${vehicle_code}`,{
+         method:"GET"
+     })
+        .then(response=>{
+            if(!response.ok){
+                if (response.status===404){
+                    throw new Error("vehicle not found .");
+                }
+                throw new Error("Failed to fetch vehicle .");
+            }
+            return response.json();
+        })
+        .then(vehicle=>{
+            showVehicleForm();
+            document.getElementById("vehicleCode").value=vehicle.vehicle_code;
+            document.getElementById("licenseNo").value=vehicle.licensePlateNumber;
+            document.getElementById("fuelType").value=vehicle.fuelType;
+            document.getElementById("vCategory").value=vehicle.vehicleCategory;
+            document.getElementById("remark").value=vehicle.remarks;
+            document.getElementById("status").value=vehicle.status;
+            document.getElementById("staffComboBox").value=vehicle.assigned_staff.id;
+
+            console.log("vehicle detail loaded successfully .")
+        })
+        .catch(error => {
+            console.error("Error fetching vehicle:", error);
+            alert(error.message);
+        });
+    console.log(vehicle_code)
+
+})
