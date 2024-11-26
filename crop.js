@@ -7,8 +7,11 @@ document.getElementById("saveCrop").addEventListener("click", function () {
     const category = document.getElementById("category").value;
     const season = document.getElementById("season").value;
     const cropImage = document.getElementById("image").files[0];
+    const field = document.getElementById("field_code").value;
+
+
    // Validate inputs (optional)
-    if (!cropCode || !commonName || !scienceName || !cropImage) {
+    if (!cropCode || !commonName || !scienceName || !cropImage||!field) {
         alert("Please fill in all required fields!");
         return;
     }
@@ -20,6 +23,8 @@ document.getElementById("saveCrop").addEventListener("click", function () {
     formData.append("category", category);
     formData.append("season", season);
     formData.append("image", cropImage);
+    formData.append("field_code", field);
+
 
     fetch("http://localhost:5050/cropManagement/api/v1/crop", {
         method: "POST",
