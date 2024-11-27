@@ -174,4 +174,4 @@ function loadAllFields() {
             alert("Failed to load fields. Please try again.");
         });
 }
-document.addEventListener("DOMContentLoaded",loadAllFields)
+// document.addEventListener("DOMContentLoaded",loadAllFields)
