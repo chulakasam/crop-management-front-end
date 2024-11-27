@@ -82,8 +82,8 @@
         <!-- Delete Field Button -->
         <button class="btn btn-danger mb-3" >Delete Field</button>
         <!-- Search Field Button -->
-        <button class="btn btn-success mb-3" >Search Field</button>
-        <input type="text" class="search" name="search" placeholder="Search...">
+        <button class="btn btn-success mb-3" id="fieldSearch">Search Field</button>
+        <input type="text" class="search" name="search" placeholder="Search..." id="fieldCode">
 
 
         <!-- Field Form Modal -->
@@ -115,13 +115,26 @@
                                 <input type="number" class="form-control" id="fieldSize" required>
                             </div>
                             <div class="form-group">
-                                <label for="fieldImage01">Field Image 01</label>
-                                <input type="file" class="form-control" id="fieldImage01" required>
+
+                                <label for="fieldImage01">Field Image 01:</label>
+                                <input type="file" id="fieldImage01" name="fieldImage01">
+                                <img id="fieldImage01Preview" style="display:none; max-width: 200px; margin-top: 10px;">
+<!--                                <label for="fieldImage01">Field Image 01</label>-->
+<!--                                <input type="file" class="form-control" id="fieldImage01" required>-->
                             </div>
+
                             <div class="form-group">
-                                <label for="fieldImage02">Field Image 02</label>
-                                <input type="file" class="form-control" id="fieldImage02" required>
+                                <label for="fieldImage02">Field Image 02:</label>
+                                <input type="file" id="fieldImage02" name="fieldImage02">
+                                <img id="fieldImage02Preview" style="display:none; max-width: 200px; margin-top: 10px;">
+<!--                                <label for="fieldImage02">Field Image 02</label>-->
+<!--                                <input type="file" class="form-control" id="fieldImage02" required>-->
                             </div>
+
+
+                            <!-- Existing File Inputs -->
+
+
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -146,6 +159,8 @@
                     <th>Field Size</th>
                     <th>Field Image 01</th>
                     <th>Field Image 02</th>
+                    <th>Action</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -497,7 +512,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="addEquipment()">Save Equipment</button>
+                        <button type="button" class="btn btn-primary" id="addEquipment">Save Equipment</button>
                     </div>
                 </div>
             </div>
@@ -618,5 +633,6 @@
 <script src="field.js"></script>
 <script src="staff.js"></script>
 <script src="vehicle.js"></script>
+<script src="equipment.js"></script>
 </body>
 </html>

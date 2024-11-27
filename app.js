@@ -339,11 +339,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function populateTables() {
-    // Sample Data
-    const fields = [
-        { code: "F001", name: "Field A", location: "Lat: 12.34, Long: 56.78", extent: 2000, staff: "John Doe" },
-        { code: "F002", name: "Field B", location: "Lat: 98.76, Long: 54.32", extent: 3000, staff: "Jane Smith" },
-    ];
+
 
 
     const staff = [
@@ -362,21 +358,21 @@ function populateTables() {
         row.insertCell(4).innerText = field.staff;
     });
 
-    // Populate Crops Table
-    const cropsTable = document.getElementById("cropsTable").querySelector("tbody");
-    crops.forEach(crop => {
-        let row = cropsTable.insertRow();
-        row.insertCell(0).innerText = crop.code;
-        row.insertCell(1).innerText = crop.commonName;
-        row.insertCell(2).innerText = crop.scientificName;
-        row.insertCell(3).innerText = crop.category;
-        row.insertCell(4).innerText = crop.season;
-        row.insertCell(5).innerText = crop.action;
-    });
-
-    const crops = [
-
-    ];
+    // // Populate Crops Table
+    // const cropsTable = document.getElementById("cropsTable").querySelector("tbody");
+    // crops.forEach(crop => {
+    //     let row = cropsTable.insertRow();
+    //     row.insertCell(0).innerText = crop.code;
+    //     row.insertCell(1).innerText = crop.commonName;
+    //     row.insertCell(2).innerText = crop.scientificName;
+    //     row.insertCell(3).innerText = crop.category;
+    //     row.insertCell(4).innerText = crop.season;
+    //     row.insertCell(5).innerText = crop.action;
+    // });
+    //
+    // const crops = [
+    //
+    // ];
 
 
 
