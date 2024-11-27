@@ -27,6 +27,7 @@ document.getElementById('addEquipment').addEventListener('click',function (){
         .then(response => {
             if (response.ok) {
                 alert("Equipment saved successfully!");
+                loadAllEquipments();
 
             } else {
                 throw new Error("Error saving equipment: " + response.statusText);
@@ -93,3 +94,42 @@ function loadAllEquipments() {
 
 
 document.addEventListener("DOMContentLoaded",loadAllEquipments);
+
+//----------------------search by ID -----------------------------
+
+document.getElementById("searchEquipment").addEventListener("click",function (){
+    const equipment_id = document.getElementById("searchEquId").value;
+    if(!equipment_id){
+        alert("Please enter the Equipment ID");
+        return;
+    }
+    fetch(`http://localhost:5050/cropManagement/api/v1/equipment/${equipment_id}`,{
+        method:"GET"
+    })
+        .then(response=>{
+            if(!response.ok){
+                if (response.status===404){
+                    throw new Error("equipment not found .");
+                }
+                throw new Error("Failed to fetch equipment .");
+            }
+            return response.json();
+        })
+        .then(equipment=>{
+            showEquipmentForm();
+            document.getElementById("equipmentId").value=equipment.equipment_id;
+            document.getElementById("name").value=equipment.name;
+            document.getElementById("type").value=equipment.type;
+            document.getElementById("equipmentStatus").value=equipment.status;
+            document.getElementById("code").value=equipment.assigned_field.field_code;
+           document.getElementById("staff_id").value=equipment.assigned_staff.id;
+
+            console.log("equipment detail loaded successfully .")
+        })
+        .catch(error => {
+            console.error("Error fetching equipment:", error);
+            alert(error.message);
+        });
+    console.log(equipment_code)
+
+})
