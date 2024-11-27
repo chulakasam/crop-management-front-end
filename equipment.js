@@ -3,10 +3,10 @@ document.getElementById('addEquipment').addEventListener('click',function (){
     const name=document.getElementById('name').value;
     const type=document.getElementById('type').value
     const status=document.getElementById('equipmentStatus').value;
-    const field_code=document.getElementById('code').value;
-    const id=document.getElementById('staff_id').value;
+    const assigned_field=document.getElementById('code').value;
+    const assigned_staff=document.getElementById('staff_id').value;
 
-    if(!equipment_id || !name || !type || !status || !field_code || !id){
+    if(!equipment_id || !name || !type || !status || !assigned_field || !assigned_staff){
         alert("Please fill in all required fields")
     }
     const equipmentData={
@@ -14,8 +14,8 @@ document.getElementById('addEquipment').addEventListener('click',function (){
         name:name,
         type:type,
         status:status,
-        field_code:{field_code:field_code},
-        id:{id:id}
+        assigned_field:{field_code:assigned_field},
+        assigned_staff:{id:assigned_staff}
     }
     fetch("http://localhost:5050/cropManagement/api/v1/equipment", {
         method: "POST",
