@@ -15,7 +15,7 @@ document.getElementById('saveField').addEventListener("click",function (){
     // formData.append("fieldCode",field_code);
     formData.append("fieldName",field_name);
     formData.append("extentSize",extent_size);
-    formData.append("location",location);
+     formData.append("location",location);
     formData.append("fieldImage_01",field_image1);
    formData.append("fieldImage_02",field_image2);
 
@@ -29,6 +29,7 @@ document.getElementById('saveField').addEventListener("click",function (){
         .then(response => {
             if (response.ok) {
                 alert("field saved successfully!");
+                loadAllFields()
             } else {
                 alert("Error saving field: " + response.statusText);
             }
@@ -84,7 +85,7 @@ document.getElementById("fieldSearch").addEventListener("click",function (){
 
 
 
-
+document.addEventListener("DOMContentLoaded",loadAllFields);
 
 
 
@@ -133,29 +134,29 @@ function loadAllFields() {
 
             fields.forEach(field => {
                 const row = fieldsTableBody.insertRow();
-                row.insertCell(0).innerText = field.fieldCode; // Ensure these match backend response fields
-                row.insertCell(1).innerText = field.fieldName;
+                row.insertCell(0).innerText = field.field_code; // Ensure these match backend response fields
+                row.insertCell(1).innerText = field.field_name;
                 row.insertCell(2).innerText = field.location;
-                row.insertCell(3).innerText = field.extentSize;
+                row.insertCell(3).innerText = field.extent_size;
 
                 // Image preview
-                // const imgCell1 = row.insertCell(4);
-                // const img1 = document.createElement("img");
-                // img1.src = `data:image/jpeg;base64,${field.fieldImage_01}`;
-                // img1.alt = "Field Image 01";
-                // img1.style.maxWidth = "100px";
-                // img1.style.maxHeight = "100px";
-                // img1.style.objectFit = "cover";
-                // imgCell1.appendChild(img1);
+                const imgCell1 = row.insertCell(4);
+                const img1 = document.createElement("img");
+                img1.src = `data:image/jpeg;base64,${field.field_image1}`;
+                img1.alt = "Field Image 01";
+                img1.style.maxWidth = "100px";
+                img1.style.maxHeight = "100px";
+                img1.style.objectFit = "cover";
+                imgCell1.appendChild(img1);
 
-                // const imgCell2 = row.insertCell(5);
-                // const img2 = document.createElement("img");
-                // img2.src = `data:image/jpeg;base64,${field.fieldImage_02}`;
-                // img2.alt = "Field Image 02";
-                // img2.style.maxWidth = "100px";
-                // img2.style.maxHeight = "100px";
-                // img2.style.objectFit = "cover";
-                // imgCell2.appendChild(img2);
+                const imgCell2 = row.insertCell(5);
+                const img2 = document.createElement("img");
+                img2.src = `data:image/jpeg;base64,${field.field_image2}`;
+                img2.alt = "Field Image 02";
+                img2.style.maxWidth = "100px";
+                img2.style.maxHeight = "100px";
+                img2.style.objectFit = "cover";
+                imgCell2.appendChild(img2);
 
                 // Action buttons
                 const actionsCell = row.insertCell(6);

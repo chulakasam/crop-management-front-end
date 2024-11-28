@@ -354,7 +354,7 @@ function populateTables() {
         row.insertCell(0).innerText = field.code;
         row.insertCell(1).innerText = field.name;
         row.insertCell(2).innerText = field.location;
-        row.insertCell(3).innerText = field.extent;
+        row.insertCell(3).innerText = field.fieldSize;
         row.insertCell(4).innerText = field.staff;
     });
 
