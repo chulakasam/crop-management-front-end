@@ -68,7 +68,7 @@ document.getElementById("fieldSearch").addEventListener("click",function (){
         .then(field => {
             // Populate the form with fetched crop details
             showFieldForm();
-            document.getElementById("fieldName").value = field.field_code;
+            document.getElementById("fieldName").value = field.field_name;
             document.getElementById("fieldLocation").value = field.location;
             document.getElementById("fieldSize").value = field.extent_size;
             document.getElementById("fieldImage01").files[0]= field.field_image1;
@@ -83,34 +83,37 @@ document.getElementById("fieldSearch").addEventListener("click",function (){
         });
 })
 
-
-
 document.addEventListener("DOMContentLoaded",loadAllFields);
 
 
+// delete field
+function attachDeleteFieldEventListeners() {
+    const deleteButtons = document.querySelectorAll(".delete-btn");
 
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const fieldCode = button.dataset.id;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            if (confirm(`Are you sure you want to delete field ${fieldCode}?`)) {
+                fetch(`http://localhost:5050/cropManagement/api/v1/field/${fieldCode}`, {
+                    method: "DELETE",
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("Field deleted successfully!");
+                            loadAllFields(); // Reload the table after successful deletion
+                        } else {
+                            alert("Failed to delete field. It may not exist.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("An error occurred while deleting the field.");
+                    });
+            }
+        });
+    });
+}
 
 
 
@@ -161,12 +164,12 @@ function loadAllFields() {
                 // Action buttons
                 const actionsCell = row.insertCell(6);
                 actionsCell.innerHTML = `
-                    <button class="btn btn-primary btn-sm edit-btn" data-id="${field.fieldCode}">Edit</button>
-                    <button class="btn btn-danger btn-sm delete-btn" data-id="${field.fieldCode}">Delete</button>
+                    <button class="btn btn-primary btn-sm edit-btn" data-id="${field.field_code}">Edit</button>
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="${field.field_code}">Delete</button>
                 `;
             });
 
-            attachDeleteEventListeners();
+            attachDeleteFieldEventListeners();
 
             console.log("Fields table updated!");
         })
