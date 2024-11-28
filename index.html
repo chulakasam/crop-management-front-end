@@ -564,43 +564,62 @@
                     </div>
                     <div class="modal-body">
                         <form id="logForm">
-                            <div class="form-group">
-                                <label for="logId">Log ID</label>
-                                <input type="text" class="form-control" id="logId" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="observation">Observation</label>
-                                <input type="text" class="form-control" id="observation" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="logImage"> Image</label>
-                                <input type="file" class="form-control" id="logImage" required>
-                            </div>
+<!--                            <div class="form-group">-->
+<!--                                <label for="logId">Log ID</label>-->
+<!--                                <input type="text" class="form-control" id="logId" required>-->
+<!--                            </div>-->
                             <div class="form-group">
                                 <label for="logDate">Date</label>
                                 <input type="text" class="form-control" id="logDate" required>
                             </div>
                             <div class="form-group">
-                                <label for="f_Code">Field Code</label>
-                                <input type="text" class="form-control" id="f_Code" required>
+                                <label for="logDetails">Details</label>
+                                <input type="text" class="form-control" id="logDetails" required>
                             </div>
                             <div class="form-group">
-                                <label for="s_id">Staff ID</label>
-                                <input type="text" class="form-control" id="s_id" required>
+                                <label for="logImage"> Image</label>
+                                <input type="file" class="form-control" id="logImage" required>
                             </div>
+
+<!--                            <div class="form-group">-->
+<!--                                <label for="f_Code">Field Code</label>-->
+<!--                                <input type="text" class="form-control" id="f_Code" required>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="s_id">Staff ID</label>-->
+<!--                                <input type="text" class="form-control" id="" required>-->
+<!--                            </div>-->
                             <div class="form-group">
-                                <label for="c_id">Crop ID</label>
-                                <input type="text" class="form-control" id="c_id" required>
+                                <label for="s_id">Assigned staff ID</label>
+                                <select id="s_id">
+                                    <option value="" disabled selected>Loading...</option>
+                                </select>
                             </div>
+<!--                            <div class="form-group">-->
+<!--                                <label for="c_id">Crop ID</label>-->
+<!--                                <input type="text" class="form-control" id="c_id" required>-->
+<!--                            </div>-->
                             <div class="form-group">
-                                <label for="v_id">Vehicle ID</label>
-                                <input type="text" class="form-control" id="v_id" required>
+                                <label for="c_id">Assigned crop ID</label>
+                                <select id="c_id">
+                                    <option value="" disabled selected>Loading...</option>
+                                </select>
+                            </div>
+<!--                            <div class="form-group">-->
+<!--                                <label for="v_id">Vehicle ID</label>-->
+<!--                                <input type="text" class="form-control" id="v_id" required>-->
+<!--                            </div>-->
+                            <div class="form-group">
+                                <label for="v_id">Assigned crop ID</label>
+                                <select id="v_id">
+                                    <option value="" disabled selected>Loading...</option>
+                                </select>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="addLog()">Save Monitoring Log</button>
+                        <button type="button" class="btn btn-primary" id="saveLogs">Save Monitoring Log</button>
                     </div>
                 </div>
             </div>
@@ -636,5 +655,6 @@
 <script src="staff.js"></script>
 <script src="vehicle.js"></script>
 <script src="equipment.js"></script>
+<script src="log.js"></script>
 </body>
 </html>
