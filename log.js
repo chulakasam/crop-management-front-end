@@ -201,9 +201,9 @@ function loadAllLogs(){
                     <button class="btn btn-primary btn-sm edit-btn" data-id="${log.log_code}">Edit</button>
                     <button class="btn btn-danger btn-sm delete-btn" data-id="${log.log_code}" id="deletebtn">Delete</button>
                 `;
-            });
-            attachDeleteEventListeners();
+            })
 
+            DeleteLogById();
             console.log("Logs table updated!");
         })
         .catch(error => {
@@ -246,3 +246,33 @@ document.getElementById('searchLog').addEventListener('click',function (){
     console.log(log_code)
 
 })
+
+//-----------------------delete monitoring log ------------------------------------------
+
+function DeleteLogById() {
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const log_code = button.dataset.id; // Get the crop ID from the button's data-id attribute
+
+            if (confirm(`Are you sure you want to delete log ${log_code}?`)) {
+                fetch(`http://localhost:5050/cropManagement/api/v1/logs/${log_code}`, {
+                    method: "DELETE",
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("log deleted successfully!");
+                            loadAllLogs(); // Reload the table after successful deletion
+                        } else {
+                            alert("Failed to delete log. It may not exist.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("An error occurred while deleting the log.");
+                    });
+            }
+        });
+    });
+}
