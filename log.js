@@ -211,4 +211,38 @@ function loadAllLogs(){
             alert("Failed to load logs. Please try again.");
         });
 }
-document.addEventListener("DOMContentLoaded",loadAllLogs)
+document.addEventListener("DOMContentLoaded",loadAllLogs);
+
+//------------------------ search by ID -------------------------------------------------
+document.getElementById('searchLog').addEventListener('click',function (){
+    const log_code = document.getElementById('searchLogCode').value;
+    if(!log_code){
+        alert("Please enter the log code");
+        return''
+    }
+    fetch(`http://localhost:5050/cropManagement/api/v1/logs/${log_code}`,{
+        method:"GET"
+    })
+        .then(response=>{
+            if(!response.ok){
+                if (response.status===404){
+                    throw new Error("Monitoring log not found .");
+                }
+                throw new Error("Failed to fetch monitoring log .");
+            }
+            return response.json();
+        })
+        .then(log=>{
+            showLogForm();
+            document.getElementById("logDate").value=log.log_date;
+            document.getElementById("logDetails").value=log.log_details;
+            // document.getElementById("logImage").value=log.observed_image;
+            console.log("logs detail loaded successfully .")
+        })
+        .catch(error => {
+            console.error("Error fetching log:", error);
+            alert(error.message);
+        });
+    console.log(log_code)
+
+})
