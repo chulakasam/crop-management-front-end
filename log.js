@@ -145,7 +145,7 @@ document.getElementById('saveLogs').addEventListener('click',function (){
         .then(response => {
             if (response.ok) {
                 alert("Log saved successfully!");
-                loadAllCrops();
+                loadAllLogs();
 
             } else {
                 alert("Error saving log: " + response.statusText);
@@ -156,3 +156,59 @@ document.getElementById('saveLogs').addEventListener('click',function (){
             alert("An error occurred while saving the log.");
         });
 })
+
+//------------------load all logs ----------------------
+function loadAllLogs(){
+    fetch("http://localhost:5050/cropManagement/api/v1/logs", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json(); // Parse the response as JSON
+            } else {
+                throw new Error("Failed to fetch logs: " + response.statusText);
+            }
+        })
+        .then(logs => {
+            // Clear the existing table rows
+            const cropsTableBody = document.getElementById("logsTable").querySelector("tbody");
+            cropsTableBody.innerHTML = "";
+
+            // Populate the table with new data
+            logs.forEach(log => {
+                let row = cropsTableBody.insertRow();
+                row.insertCell(0).innerText = log.log_code; // Ensure these match your backend response fields
+                row.insertCell(1).innerText = log.log_date;
+                row.insertCell(2).innerText = log.log_details;
+
+
+                // Create an <img> tag for the crop image
+                const imgCell = row.insertCell(3);
+                const imgElement = document.createElement("img");
+                imgElement.src = `data:image/jpeg;base64,${log.observed_image}`; // Set Base64 string as source
+                imgElement.alt = "log Image";
+                imgElement.style.maxWidth = "100px"; // Limit image size
+                imgElement.style.maxHeight = "100px";
+                imgElement.style.objectFit = "cover"; // Ensure the image fits well
+                imgCell.appendChild(imgElement);
+
+                // Add action buttons
+                let actionsCell = row.insertCell(4);
+                actionsCell.innerHTML = `
+                    <button class="btn btn-primary btn-sm edit-btn" data-id="${log.log_code}">Edit</button>
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="${log.log_code}" id="deletebtn">Delete</button>
+                `;
+            });
+            attachDeleteEventListeners();
+
+            console.log("Logs table updated!");
+        })
+        .catch(error => {
+            console.error("Error loading Logs:", error);
+            alert("Failed to load logs. Please try again.");
+        });
+}
+document.addEventListener("DOMContentLoaded",loadAllLogs)
