@@ -348,15 +348,15 @@ function populateTables() {
     ];
 
     // Populate Fields Table
-    const fieldsTable = document.getElementById("fieldsTable").querySelector("tbody");
-    fields.forEach(field => {
-        let row = fieldsTable.insertRow();
-        row.insertCell(0).innerText = field.code;
-        row.insertCell(1).innerText = field.name;
-        row.insertCell(2).innerText = field.location;
-        row.insertCell(3).innerText = field.fieldSize;
-        row.insertCell(4).innerText = field.staff;
-    });
+    // const fieldsTable = document.getElementById("fieldsTable").querySelector("tbody");
+    // fields.forEach(field => {
+    //     let row = fieldsTable.insertRow();
+    //     row.insertCell(0).innerText = field.code;
+    //     row.insertCell(1).innerText = field.name;
+    //     row.insertCell(2).innerText = field.location;
+    //     row.insertCell(3).innerText = field.fieldSize;
+    //     row.insertCell(4).innerText = field.staff;
+    // });
 
     // // Populate Crops Table
     // const cropsTable = document.getElementById("cropsTable").querySelector("tbody");

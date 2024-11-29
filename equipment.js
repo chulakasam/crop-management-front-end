@@ -83,6 +83,7 @@ function loadAllEquipments() {
                     <button class="btn btn-danger btn-sm delete-btn" data-id="${equipment.equipment_id}" id="deletebtn">Delete</button>
                 `;
             });
+            deleteEquipmentById();
             console.log("Equipment table updated!");
         })
         .catch(error => {
@@ -133,3 +134,33 @@ document.getElementById("searchEquipment").addEventListener("click",function (){
     console.log(equipment_code)
 
 })
+
+// --------------- delete equipment --------------------------
+
+function deleteEquipmentById() {
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const equipment_code = button.dataset.id; // Get the crop ID from the button's data-id attribute
+
+            if (confirm(`Are you sure you want to delete vehicle ${equipment_code}?`)) {
+                fetch(`http://localhost:5050/cropManagement/api/v1/equipment/${equipment_code}`, {
+                    method: "DELETE",
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("equipment deleted successfully!");
+                            loadAllVehicle(); // Reload the table after successful deletion
+                        } else {
+                            alert("Failed to delete equipment. It may not exist.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("An error occurred while deleting the equipment.");
+                    });
+            }
+        });
+    });
+}
