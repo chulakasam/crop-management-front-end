@@ -11,6 +11,9 @@ document.getElementById('saveStaff').addEventListener("click",function (){
     const email=document.getElementById("email").value;
     const address=document.getElementById("line01").value;
     const role=document.getElementById("role").value;
+    const field_code=document.getElementById("staff_field_details").value;
+    const fields = field_code ? [{ field_code: field_code }] : [];
+
 
     if(!id || !first_name || !last_name || !designation || !gender || !joined_date || !dob || !contact_no || !email || !address || !role){
         alert("Please fill in all required fields")
@@ -28,7 +31,9 @@ document.getElementById('saveStaff').addEventListener("click",function (){
         contact_no: contact_no,
         email: email,
         address: address,
-        role: role
+        role: role,
+        fields: fields
+
     };
 
     fetch("http://localhost:5050/cropManagement/api/v1/staff", {
@@ -54,9 +59,49 @@ document.getElementById('saveStaff').addEventListener("click",function (){
     console.log(id,first_name,last_name,designation,gender,joined_date,dob,contact_no,email,address,role)
 })
 
+// ----------------load field ids--------------------------
+function loadFieldID() {
+    const comboBox = document.getElementById("staff_field_details");
+
+    fetch("http://localhost:5050/cropManagement/api/v1/field", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch field IDs: " + response.statusText);
+            }
+            return response.text(); // Get raw text response
+        })
+        .then(data => {
+            console.log("Raw response data:", data);
+
+            // Parse JSON after verifying the response
+            const fields = JSON.parse(data);
+
+            // Clear existing options
+            comboBox.innerHTML = '<option value="" disabled selected>Select Staff ID</option>';
+
+            // Append staff IDs as options to the combo box
+            fields.forEach(field => {
+                const option = document.createElement("option");
+                option.value = field.field_code; // Use the staff ID as the value
+                option.textContent = field.field_code; // Display the staff ID
+                comboBox.appendChild(option);
+            });
+            console.log("field IDs loaded successfully!");
+        })
+        .catch(error => {
+            console.error("Error loading field IDs:", error);
+            comboBox.innerHTML = '<option value="" disabled>Error loading data</option>';
+        });
+}
 
 
 
+document.addEventListener("DOMContentLoaded",loadFieldID);
 
 
 
@@ -91,8 +136,9 @@ function loadAllStaff(){
                 row.insertCell(8).innerText=staff.email;
                 row.insertCell(9).innerText=staff.address;
                 row.insertCell(10).innerText=staff.role;
+                row.insertCell(11).innerText=staff.fields;
 
-                let actionsCell = row.insertCell(11);
+                let actionsCell = row.insertCell(12);
                 actionsCell.innerHTML = `
                     <button class="btn btn-primary btn-sm edit-btn" data-id="${staff.id}">Edit</button>
                     <button class="btn btn-danger btn-sm delete-btn" data-id="${staff.id}" id="deletebtn">Delete</button>
